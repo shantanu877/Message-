@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farewell Friend</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    overflow-x: hidden;
+    position: relative;
+    color: #fff;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+    animation: glow 2s infinite alternate;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493; }
+    to { text-shadow: 0 0 40px #ffb6c1, 0 0 80px #ff69b4; }
+  }
+
+  p.message {
+    font-size: 1.4rem;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 700px;
+    line-height: 1.6;
+    animation: fadeIn 4s ease-in-out;
+    text-shadow: 0 0 5px #fff;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .balloon, .flower, .sparkle, .gif-cute {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .balloon {
+    width: 50px;
+    height: 70px;
+    background: pink;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+
+  .flower {
+    font-size: 2rem;
+    animation: fall 5s linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  .sparkle {
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    border-radius: 50%;
+    animation: twinkle 2s infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  .gif-cute {
+    width: 80px;
+    height: 80px;
+    animation: floatGif 7s infinite linear;
+  }
+
+  @keyframes floatGif {
+    0% { transform: translateY(120vh) rotate(0deg); opacity: 0.8; }
+    50% { transform: translateY(50vh) rotate(180deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0.8; }
+  }
+
+</style>
+</head>
+<body>
+<h1>🌸 Farewell Friend 🌸</h1>
+
+<p class="message">
+You’ve always been such a close friend to me, and the time we’ve shared will always hold a special place in my heart. Every moment with you was filled with laughter, learning, and warmth, and I’ll always see that as a blessing. Even though I’m leaving now, I genuinely wish you nothing but happiness and success in everything you do. May your future be bright, and may all your dreams come true.
+</p>
+
+<script>
+const gifs = [
+  'https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif',
+  'https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif',
+  'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif'
+];
+
+function createElement(type, content) {
+  const el = document.createElement('div');
+  el.className = type;
+  if(type === 'gif-cute') {
+    const url = gifs[Math.floor(Math.random()*gifs.length)];
+    el.innerHTML = `<img src='${url}' style='width:100%;height:100%;border-radius:50%;'/>`;
+  } else if(content) el.innerHTML = content;
+  el.style.left = Math.random() * window.innerWidth + 'px';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 7000);
+}
+
+// Animate elements
+setInterval(() => createElement('balloon'), 1500);
+setInterval(() => createElement('flower', '🌸'), 2000);
+setInterval(() => createElement('sparkle'), 1000);
+setInterval(() => createElement('gif-cute'), 3000);
+
+</script>
+</body>
+</html>
